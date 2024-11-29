@@ -10,6 +10,15 @@
 
 #define TAG "main"
 
+/** 在 ESP-IDF 或其他需要 C/C++ 混合编程的项目中，常常会看到 extern "C" 的用法，尤其是在定义设备驱动程序、回调函数或其他需要与 C 语言兼容的接口时。
+ * 使用 extern "C" 的好处是：
+    保证了 C 和 C++ 代码的互操作性。
+    避免了因名称改编导致的链接错误。
+ * 当你在 C++ 代码中调用 C 语言编写的函数时，如果不使用 extern "C"，编译器会对 C 函数名进行名称改编，从而导致链接错误。
+    extern "C" 的作用是告诉 C++ 编译器：
+        不要对这些函数进行名称改编。
+        使用 C 的方式进行链接。
+*/
 extern "C" void app_main(void)
 {
     // Initialize the default event loop
