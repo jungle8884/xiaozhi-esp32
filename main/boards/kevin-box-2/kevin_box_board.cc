@@ -185,10 +185,23 @@ public:
         return &led;
     }
 
+    /**
+     * @brief 获取音频编解码器对象
+     *
+     * 获取一个指向音频编解码器对象的指针，用于处理音频数据的编码和解码。
+     *
+     * @return 返回指向音频编解码器对象的指针
+     */
     virtual AudioCodec* GetAudioCodec() override {
+        // 创建一个静态的BoxAudioCodec对象
+        // 参数包括I2C总线、音频输入采样率、音频输出采样率、
+        // 音频I2S GPIO MCLK、BCLK、WS、DOUT、DIN，
+        // 音频编解码器的PA引脚、ES8311地址、ES7210地址，
+        // 以及音频输入参考
         static BoxAudioCodec audio_codec(codec_i2c_bus_, AUDIO_INPUT_SAMPLE_RATE, AUDIO_OUTPUT_SAMPLE_RATE,
             AUDIO_I2S_GPIO_MCLK, AUDIO_I2S_GPIO_BCLK, AUDIO_I2S_GPIO_WS, AUDIO_I2S_GPIO_DOUT, AUDIO_I2S_GPIO_DIN,
             AUDIO_CODEC_PA_PIN, AUDIO_CODEC_ES8311_ADDR, AUDIO_CODEC_ES7210_ADDR, AUDIO_INPUT_REFERENCE);
+        // 返回BoxAudioCodec对象的指针
         return &audio_codec;
     }
 

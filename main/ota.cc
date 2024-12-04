@@ -35,6 +35,13 @@ void Ota::SetPostData(const std::string& post_data) {
     post_data_ = post_data;
 }
 
+/**
+ * @brief 检查版本更新
+ *
+ * 该函数用于检查是否有新版本可用，并与当前版本进行比较。
+ *
+ * @return 如果检查成功并找到新版本，则返回true；否则返回false。
+ */
 bool Ota::CheckVersion() {
     current_version_ = esp_app_get_description()->version;
     ESP_LOGI(TAG, "Current version: %s", current_version_.c_str());
