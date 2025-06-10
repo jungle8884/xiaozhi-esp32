@@ -25,7 +25,8 @@ public:
     MqttProtocol();
     ~MqttProtocol();
 
-    void SendAudio(const std::string& data) override;
+    bool Start() override;
+    bool SendAudio(const AudioStreamPacket& packet) override;
     bool OpenAudioChannel() override;
     void CloseAudioChannel() override;
     bool IsAudioChannelOpened() const override;
@@ -33,11 +34,6 @@ public:
 private:
     EventGroupHandle_t event_group_handle_;
 
-    std::string endpoint_;
-    std::string client_id_;
-    std::string username_;
-    std::string password_;
-    std::string subscribe_topic_;
     std::string publish_topic_;
 
     std::mutex channel_mutex_;
@@ -50,11 +46,12 @@ private:
     uint32_t local_sequence_;
     uint32_t remote_sequence_;
 
-    bool StartMqttClient();
+    bool StartMqttClient(bool report_error=false);
     void ParseServerHello(const cJSON* root);
     std::string DecodeHexString(const std::string& hex_string);
 
-    void SendText(const std::string& text) override;
+    bool SendText(const std::string& text) override;
+    std::string GetHelloMessage();
 };
 
 

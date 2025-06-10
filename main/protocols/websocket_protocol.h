@@ -15,7 +15,8 @@ public:
     WebsocketProtocol();
     ~WebsocketProtocol();
 
-    void SendAudio(const std::string& data) override;
+    bool Start() override;
+    bool SendAudio(const AudioStreamPacket& packet) override;
     bool OpenAudioChannel() override;
     void CloseAudioChannel() override;
     bool IsAudioChannelOpened() const override;
@@ -23,9 +24,11 @@ public:
 private:
     EventGroupHandle_t event_group_handle_;
     WebSocket* websocket_ = nullptr;
+    int version_ = 1;
 
     void ParseServerHello(const cJSON* root);
-    void SendText(const std::string& text) override;
+    bool SendText(const std::string& text) override;
+    std::string GetHelloMessage();
 };
 
 #endif
