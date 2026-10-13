@@ -4,7 +4,7 @@ menu "Xiaozhi Assistant"
 # 换网络后本机 IP 会变（DHCP），需同步改这里 + sdkconfig，并重新编译烧录。
 config OTA_URL
     string "Default OTA URL"
-    default "http://10.1.10.130:8003/xiaozhi/ota/"
+    default "http://192.168.31.204:8003/xiaozhi/ota/"
     help
         The application will access this URL to check for new firmwares and server address.
 
