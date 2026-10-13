@@ -1,8 +1,10 @@
 menu "Xiaozhi Assistant"
 
+# [2026-10-13] OTA_URL 已改指向自建服务端 OTA 接口。
+# 换网络后本机 IP 会变（DHCP），需同步改这里 + sdkconfig，并重新编译烧录。
 config OTA_URL
     string "Default OTA URL"
-    default "https://api.tenclass.net/xiaozhi/ota/"
+    default "http://10.1.10.130:8003/xiaozhi/ota/"
     help
         The application will access this URL to check for new firmwares and server address.
 
