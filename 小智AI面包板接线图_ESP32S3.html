@@ -1,0 +1,58 @@
+<svg width="100%" viewBox="0 0 680 560" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>小智AI聊天机器人面包板接线图</title>
+<desc>ESP32-S3-DevKitC-1 与 INMP441 麦克风、MAX98357A 功放、SSD1306 OLED、按键及 LED 的接线关系</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+
+<rect x="255" y="120" width="170" height="330" rx="12" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="340" y="146" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#0C447C">ESP32-S3-DevKitC-1</text>
+<text x="340" y="164" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#185FA5">N16R8</text>
+
+<rect x="40" y="120" width="180" height="120" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="130" y="144" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#085041">INMP441 麦克风</text>
+<text x="130" y="168" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#0F6E56">I2S 输入</text>
+<text x="130" y="196" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#0F6E56">WS→GPIO4  SCK→GPIO5</text>
+<text x="130" y="216" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#0F6E56">SD→GPIO6  VCC→3V3</text>
+
+<rect x="460" y="120" width="180" height="120" rx="12" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text x="550" y="144" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#712B13">MAX98357A 功放</text>
+<text x="550" y="168" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#993C1D">I2S 输出 → 喇叭</text>
+<text x="550" y="196" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#993C1D">DIN→GPIO7  BCLK→GPIO15</text>
+<text x="550" y="216" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#993C1D">LRC→GPIO16  VCC→5V</text>
+
+<rect x="40" y="300" width="180" height="100" rx="12" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="130" y="322" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#3C3489">SSD1306 OLED</text>
+<text x="130" y="344" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#534AB7">128x64 / 128x32</text>
+<text x="130" y="368" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#534AB7">SDA→GPIO41  SCL→GPIO42</text>
+<text x="130" y="386" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#534AB7">VCC→3V3  GND→GND</text>
+
+<rect x="460" y="300" width="180" height="100" rx="12" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+<text x="550" y="322" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#633806">按键 ×3 + LED</text>
+<text x="550" y="344" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#854F0B">其余脚一端接 GND</text>
+<text x="550" y="368" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#854F0B">BOOT→GPIO0  音量+→GPIO40</text>
+<text x="550" y="386" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#854F0B">音量-→GPIO39  LED→GPIO18</text>
+
+<path d="M220 168 L255 168" fill="none" stroke="#0F6E56" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M425 168 L460 168" fill="none" stroke="#993C1D" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M255 350 L220 350" fill="none" stroke="#534AB7" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M425 350 L460 350" fill="none" stroke="#854F0B" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<text x="237" y="158" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#0F6E56">I2S</text>
+<text x="442" y="158" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#993C1D">I2S</text>
+<text x="237" y="340" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#534AB7">I2C</text>
+<text x="442" y="340" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#854F0B">GPIO</text>
+
+<rect x="255" y="200" width="170" height="70" rx="8" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+<text x="340" y="222" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="13" font-weight="500" fill="#042C53">公共电源</text>
+<text x="340" y="244" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#0C447C">3V3 → 麦克风 / OLED</text>
+<text x="340" y="260" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#0C447C">5V → 功放   GND 全共地</text>
+
+<rect x="40" y="430" width="600" height="100" rx="12" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="64" y="456" dominant-baseline="central" font-family="sans-serif" font-size="13" font-weight="500" fill="#2C2C2A">接线要点</text>
+<text x="64" y="480" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#444441">1. 功放 GAIN 悬空 = 9dB；接 GND = 12dB，接 5V = 15dB</text>
+<text x="64" y="500" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#444441">2. 面包板横列是同一电源轨，竖列 5 孔一组共地 —— 不要把相邻模块短接</text>
+<text x="64" y="520" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#444441">3. 编译时选 bread-compact-wifi（带屏）或 bread-compact-wifi-lcd 配置</text>
+</svg>

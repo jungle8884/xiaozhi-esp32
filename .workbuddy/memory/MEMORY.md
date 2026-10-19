@@ -44,8 +44,7 @@
 3. 换 WiFi 还需长按 BOOT 重新配网（NVS 里存的是旧 SSID）；
 4. 最优解：路由器给电脑 WLAN 网卡做 **DHCP 静态绑定**，IP 永不变，固件永不用重编。
 
-## 设备绑定（激活码）机制
-- 6 位验证码由 **manager-api 的 OTA 接口**（`POST http://<IP>:8002/xiaozhi/ota/`，
+## 设备绑定（激活码）机制- 6 位验证码由 **manager-api 的 OTA 接口**（`POST http://<IP>:8002/xiaozhi/ota/`，
   在 `DeviceServiceImpl.buildActivation()`）生成，存 Redis `ota:activation:data:<mac>` +
   `ota:activation:code:<code>`；智控台输码 → `POST /device/bind/{agentId}/{code}` → 写 `ai_device`
 - **设备 OTA 指向 8003(Python) 时 `buildActivation()` 不会执行** → 拿不到码，
@@ -53,6 +52,15 @@
   （来自 `core/handle/receiveAudioHandle.py:133`，因 `conn.bind_code` 为空）
 - **补救**：代设备打一次 8002 的 OTA（`Device-Id` 必须与 body 里 `mac_address` 完全一致，
   且 body 必带 `application`），响应 `activation.code` 即验证码
+
+## 智控台模式的坑（切库后必查）
+- **`ai_model_config` 表里所有模型默认都是占位符** `"api_key": "你的api_key"`。
+  LLM 用 openai 类型时，httpx 构造 `Authorization: Bearer 你的api_key` 会抛
+  `'ascii' codec can't encode characters in position 7-8`（position 7-8 = Bearer 空格后的两个中文字）
+  → 必须在智控台【模型配置】里逐个填真实 key；【参数管理】里 `enable_wakeup_words_response_cache`
+  会让唤醒词那句**走缓存不报错**，容易误判成"LLM 正常"
+- agent 的 `mem_model_id` 默认 `Memory_mem0ai`（需 mem0 云 key），本地环境建议改为 `Memory_mem_local_short`
+- agent/模型配置在**每次新 WS 连接时**从 manager-api 拉取 → 改完断开重连即可，**不用重启 Python 服务端**
 
 ## 设备端改动
 - `main/Kconfig.projbuild` 的 `OTA_URL` default + `sdkconfig` 的 `CONFIG_OTA_URL`
